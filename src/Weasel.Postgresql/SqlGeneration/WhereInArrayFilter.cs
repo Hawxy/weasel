@@ -19,7 +19,7 @@ public class WhereInArrayFilter: ISqlFragment
         builder.Append(" = ANY(:");
         var parameter = _values.AddParameter(builder);
         builder.Append(parameter.ParameterName);
-        builder.Append(")");
+        builder.Append(')');
     }
 
 }

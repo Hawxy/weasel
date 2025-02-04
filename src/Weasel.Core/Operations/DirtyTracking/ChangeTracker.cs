@@ -1,4 +1,4 @@
-using Newtonsoft.Json.Linq;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Weasel.Core.Operations.DirtyTracking;
 
@@ -15,7 +15,7 @@ public class ChangeTracker<T>: IChangeTracker
 
     public object Document => _document;
 
-    public bool DetectChanges(IStorageSession session, out IStorageOperation operation)
+    public bool DetectChanges(IStorageSession session, [NotNullWhen(true)]out IStorageOperation? operation)
     {
         var newJson = session.Serializer.ToCleanJson(_document);
         if (JToken.DeepEquals(JObject.Parse(_json), JObject.Parse(newJson)))
